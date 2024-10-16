@@ -4,7 +4,7 @@ import io.restassured.response.Response;
 import model.User;
 
 import static Constant.EndpointConstant.CREATE_USER;
-import static Constant.EndpointConstant.DELETE_USER;
+import static Constant.EndpointConstant.DELETE_PATCH_USER;
 import static io.restassured.RestAssured.given;
 
 public class UserClient {
@@ -17,9 +17,28 @@ public class UserClient {
                 .post(CREATE_USER);
     }
     @Step("Delete user")
-    public Response deleteUser(String token){
+    public Response deleteUser(String accessToken){
         return given().log().all()
-                .header("Authorization", token)
-                .delete(DELETE_USER);
+                .header("Authorization", accessToken)
+                .delete(DELETE_PATCH_USER);
+    }
+    @Step("Changing user data with auth")
+    public Response updateDataUserAuth(User user, String accessToken){
+        return given().log().all()
+                .header("Authorization", accessToken)
+                .header("Content-type", "application/json")
+                .and()
+                .body(user)
+                .when()
+                .patch(DELETE_PATCH_USER);}
+
+    @Step("Changing user data without auth")
+    public Response updateDataUserWithoutAuth(User user){
+        return given().log().all()
+                .header("Content-type", "application/json")
+                .and()
+                .body(user)
+                .when()
+                .patch(DELETE_PATCH_USER);
     }
 }
