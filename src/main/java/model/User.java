@@ -1,17 +1,19 @@
+package model;
+
 public class User {
     private String email;
     private String password;
     private String name;
-//конструктор с параметром
+    //конструктор с параметром
     public User(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
     }
-//конструктор без параметра
+    //конструктор без параметра
     public User() {
     }
-//сеттеры и геттеры
+    //сеттеры и геттеры
     public String getEmail() {
         return email;
     }

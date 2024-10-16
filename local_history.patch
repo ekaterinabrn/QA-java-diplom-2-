@@ -1,0 +1,16 @@
+Index: src/main/java/Constant/RandomDataUser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Constant/RandomDataUser.java b/src/main/java/Constant/RandomDataUser.java
+--- a/src/main/java/Constant/RandomDataUser.java	
++++ b/src/main/java/Constant/RandomDataUser.java	(date 1728906680848)
+@@ -4,6 +4,6 @@
+ 
+ public class RandomDataUser {
+     public static String RANDOM_EMAIL= RandomStringUtils.randomAlphabetic(4)+"@test.com";
+-    public static String RANDOM_PASS = RandomStringUtils.randomNumeric(10);
++    public static String RANDOM_PASSWORD = RandomStringUtils.randomNumeric(10);
+     public static String RANDOM_NAME = RandomStringUtils.randomAlphabetic(10);
+ }

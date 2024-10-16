@@ -1,13 +1,16 @@
+package model;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class OrderIngredient {
     private List<String> ingredients;
 
-    public Order(List<String> ingredients) { // Конструктор класса с параметрами ингридиенты
+    public OrderIngredient(List<String> ingredients) {
         this.ingredients = ingredients;
     }
-//сеттеры и геттеры
-    public Order() { // Конструктор  без параметров
+
+    public OrderIngredient() {
     }
 
     public List<String> getIngredients() {
@@ -18,3 +21,5 @@ public class Order {
         this.ingredients = ingredients;
     }
 }
+
+
