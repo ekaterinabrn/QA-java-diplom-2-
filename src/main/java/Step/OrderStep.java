@@ -7,12 +7,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.equalTo;
 
 public class OrderStep {
-//    Создание заказа:
-//    с авторизацией,
-//    без авторизации,
-//    с ингредиентами,
-//    без ингредиентов,
-//    с неверным хешем ингредиентов.
+
 @Step("Check status code  200 after  success creation order with ingredients")
 public void orderSuccessCreateWithIngredients(Response response) {
     response.then().statusCode(200).and().assertThat().body("success",equalTo(true));

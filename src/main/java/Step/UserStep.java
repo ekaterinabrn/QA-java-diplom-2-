@@ -22,8 +22,8 @@ public class UserStep {
 }
 
 
-    @Step("User status code 200 after success login")
-    public void checkAnswerAfterSuccessLogin(Response response) {
+    @Step("User status code 200 after success login or creation")
+    public void checkAnswerAfterSuccessLoginOrCreation(Response response) {
         response.then().statusCode(200).and().assertThat().body("success",equalTo(true));
 
     }
