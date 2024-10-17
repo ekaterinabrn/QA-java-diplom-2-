@@ -71,7 +71,5 @@ public class LoginUserTest {
             Response delete = UserClient.deleteUser(accessToken);
             delete.then().statusCode(202);
         }
-
-
     }
 }
