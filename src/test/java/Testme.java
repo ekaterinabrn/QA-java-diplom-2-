@@ -23,8 +23,11 @@ public class Testme {
        RANDOM_PASSWORD ,
        RANDOM_NAME);
         Response createtest= UserClient.createUser(user);
-        Response c=UserClient.createUser(user);
+       // Response c=UserClient.createUser(user);
         UserStep userStep=new UserStep();
-        userStep.userCreationLoginAlreadyUsed(c);
+        //userStep.userCreationLoginAlreadyUsed(c);
+       String tok =userStep.getAccessToken(createtest);
+       Response de= UserClient.deleteUser(tok);
+               de.then().statusCode(202);
 //String t =userStep.getAccessToken(createtest); System.out.println(t);
 }}

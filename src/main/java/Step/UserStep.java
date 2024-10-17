@@ -21,9 +21,6 @@ public class UserStep {
 
 }
 
-   // Изменение данных пользователя:
-  //  с авторизацией,
- //   без авторизации,
 
     @Step("User status code 200 after success login")
     public void checkAnswerAfterSuccessLogin(Response response) {
@@ -36,7 +33,9 @@ public class UserStep {
       response.then().statusCode(401).and().assertThat().body("message",equalTo("email or password are incorrect"));
 
    }
-
+@Step("check status code 200  and answer after changing user data with access token")
+public void changingUserDataWithToken(Response response) {
+    response.then().statusCode(200).and().assertThat().body("success",equalTo(true));}
     @Step("check status code 401 and answer after changing user data without access token")
     public void changingUserDataWithoutToken(Response response) {
         response.then().statusCode(401).and().assertThat().body("message",equalTo("You should be authorised"));

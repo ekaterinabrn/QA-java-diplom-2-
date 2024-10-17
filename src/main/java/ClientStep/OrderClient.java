@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import model.OrderIngredient;
 
-import static Constant.EndpointConstant.*;
+import static Constant.EndpointConstant.CREATE_ORDER;
 import static io.restassured.RestAssured.given;
 
 public class OrderClient {
@@ -12,7 +12,7 @@ public class OrderClient {
     public static Response createOrder(String accessToken,OrderIngredient orderIngredient) {
         return given().log().all()
                 .header("Content-type", "application/json")
-                .auth().oauth2(accessToken)
+                .header("Authorization", accessToken)
                 .body(orderIngredient)
                 .when()
                 .post(CREATE_ORDER);
@@ -27,7 +27,7 @@ public class OrderClient {
                 .post(CREATE_ORDER);
     }
     @Step("Check orders with access token user")
-    public Response getOrderUserToken(String accessToken){
+    public  static  Response getOrderUserToken(String accessToken){
         return given().log().all()
                 .header("Authorization", accessToken)
                 .get(CREATE_ORDER);

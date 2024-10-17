@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 
 public class LoginClient {
 @Step("User LogIN")
-    public Response loginUser(Credentials credentials) {
+    public static  Response loginUser(Credentials credentials) {
         return given().log().all()
                 .header("Content-type", "application/json")
                 .and()

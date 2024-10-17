@@ -17,23 +17,23 @@ public class UserClient {
                 .post(CREATE_USER);
     }
     @Step("Delete user")
-    public Response deleteUser(String accessToken){
+    public static Response deleteUser(String accessToken){
         return given().log().all()
                 .header("Authorization", accessToken)
                 .delete(DELETE_PATCH_USER);
     }
     @Step("Changing user data with auth")
-    public Response updateDataUserAuth(User user, String accessToken){
+    public static Response updateDataUserAuth(User user, String accessToken){
         return given().log().all()
-                .header("Authorization", accessToken)
                 .header("Content-type", "application/json")
+                .header("Authorization", accessToken)
                 .and()
                 .body(user)
                 .when()
                 .patch(DELETE_PATCH_USER);}
 
     @Step("Changing user data without auth")
-    public Response updateDataUserWithoutAuth(User user){
+    public static Response updateDataUserWithoutAuth(User user){
         return given().log().all()
                 .header("Content-type", "application/json")
                 .and()
