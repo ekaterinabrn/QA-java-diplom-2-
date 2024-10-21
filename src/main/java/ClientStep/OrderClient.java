@@ -34,7 +34,7 @@ public class OrderClient {
     }
 
     @Step("Check orders without access token user")
-    public Response getOrderUserWithoutAuthorization(){
+    public static Response getOrderUserWithoutAuthorization(){
         return given().log().all()
                 .get(CREATE_ORDER);
     }
