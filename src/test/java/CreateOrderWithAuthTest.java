@@ -54,7 +54,7 @@ public class CreateOrderWithAuthTest {
 
     @Test
     @DisplayName("Create order with authorization  with wrong hash ingredients")
-    public void createOderAuthWithWrongHashInternalServerError() {
+    public void createOderAuthWithWrongHashIngredient() {
         OrderIngredient order = new OrderIngredient(List.of("545422zxcWroNG"));
         Response orderCreateAuthWrongHash = OrderClient.createOrder(accessToken, order);
         orderStep.orderCreateWithWrongIngredientHash(orderCreateAuthWrongHash);

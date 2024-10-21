@@ -31,21 +31,19 @@ public class CreateOrderWithoutAuthTest {
         Response orderWithIngredientNoAuth = OrderClient.createOrderWithoutToken(order);
         orderStep.orderSuccessCreateWithIngredients(orderWithIngredientNoAuth);
     }
-
-//
-//    @Test
-//    @DisplayName("Creating an order without authorization without ingredients")
-//    public void createOderNonAuthWithoutIngredientsBadRequest() {
-//        order = new Order();
-//        ValidatableResponse responseCreateAuth = orderSteps.createOrderWithoutToken(order);
-//        orderSteps.checkAnswerWithoutIngredients(responseCreateAuth);
-//    }
-//
-//    @Test
-//    @DisplayName("Creating an order without authorization without ingredients")
-//    public void createOderNonAuthWithWrongHashInternalServerError() {
-//        order = new Order(List.of("123zxc"));
-//        ValidatableResponse responseCreateAuth = orderSteps.createOrderWithoutToken(order);
-//        orderSteps.checkAnswerWithWrongHash(responseCreateAuth);}
+    @Test
+    @DisplayName("Create  order without authorization and without ingredients")
+    public void createOderWithoutAuthWithoutIngredient() {
+        OrderIngredient orderIngredient = new OrderIngredient();
+        Response orderCreateNoAuthNoIngredient = OrderClient.createOrderWithoutToken( orderIngredient);
+        orderStep.orderCreateWithoutIngredients(orderCreateNoAuthNoIngredient);
+    }
+    @Test
+    @DisplayName("Create order without authorization  with wrong hash ingredients")
+    public void createOderNoAuthWithWrongHashIngredient() {
+        OrderIngredient order = new OrderIngredient(List.of("545422zxcWroNG"));
+        Response orderCreateAuthWrongHash = OrderClient.createOrderWithoutToken(order);
+        orderStep.orderCreateWithWrongIngredientHash(orderCreateAuthWrongHash);
+    }
 
 }
