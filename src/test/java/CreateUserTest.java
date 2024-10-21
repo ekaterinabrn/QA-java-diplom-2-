@@ -30,6 +30,7 @@ public class CreateUserTest {
         userStep.checkAnswerAfterSuccessLoginOrCreation(createUserTest);
         this.accessToken = userStep.getAccessToken(createUserTest);
     }
+
     @Test
     @DisplayName("creating a user if the login is already in use")
     @Description("Creating user with  existing login checking the response")
@@ -40,13 +41,14 @@ public class CreateUserTest {
         Response createUserTwo = UserClient.createUser(user);
         userStep.userCreationLoginAlreadyUsed(createUserTwo);
     }
+
     @Test
     @DisplayName("Creating  user without email")
     @Description("Creating  user without email and checking the response")
     public void creatingCourierWithoutEmailBadRequest() {
         User user = new User("", RANDOM_PASSWORD, RANDOM_NAME);
         Response createUserWithoutEmail = UserClient.createUser(user);
-       userStep.userAfterCreationErr(createUserWithoutEmail);
+        userStep.userAfterCreationErr(createUserWithoutEmail);
     }
 
     @Test
@@ -55,7 +57,7 @@ public class CreateUserTest {
     public void creatingUserWithoutPasswordBadRequest() {
         User user = new User(RANDOM_EMAIL, "", RANDOM_NAME);
         Response createUserWithoutPassword = UserClient.createUser(user);
-       userStep.userAfterCreationErr(createUserWithoutPassword);
+        userStep.userAfterCreationErr(createUserWithoutPassword);
     }
 
     @Test
@@ -69,9 +71,10 @@ public class CreateUserTest {
 
     @After
     public void deleteUser() {
-        if (accessToken != null){
-        Response delete = UserClient.deleteUser(accessToken);
-        delete.then().statusCode(202);}
+        if (accessToken != null) {
+            Response delete = UserClient.deleteUser(accessToken);
+            delete.then().statusCode(202);
+        }
 
 
     }

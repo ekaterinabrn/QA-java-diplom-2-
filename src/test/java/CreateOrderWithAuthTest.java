@@ -3,7 +3,6 @@ import ClientStep.OrderClient;
 import ClientStep.UserClient;
 import Step.OrderStep;
 import Step.UserStep;
-import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -19,47 +18,56 @@ import java.util.List;
 import static Constant.EndpointConstant.URL;
 import static Constant.RandomDataUser.*;
 
-public class GetUserOrderListTest {
+public class CreateOrderWithAuthTest {
     private String accessToken;
     UserStep userStep = new UserStep();
     User user;
-OrderStep orderStep=new OrderStep();
+    OrderStep orderStep = new OrderStep();
+
     @Before
     public void setUp() {
         RestAssured.baseURI = URL;
         user = new User(RANDOM_EMAIL, RANDOM_PASSWORD, RANDOM_NAME);
         Response createUser = UserClient.createUser(user);
         this.accessToken = userStep.getAccessToken(createUser);
-       //создадим заказ для пользователя с ингредиентами
+    }
+
+    @Test
+    @DisplayName("Create  order with authorization and valid hash ingredient")
+    public void createOderWithAuthorizationAndIngredient() {
         Response orderIngred = IngredientClient.getIngredient();
         List<String> ingredients = new ArrayList<>(orderIngred.then().log().all().extract().path("data._id")); // Извлечение ID ингредиентов из ответа
-        int fromIndex = 1; //
-        int toIndex = 3;
+        int fromIndex = 1;
+        int toIndex = 2;
         OrderIngredient order = new OrderIngredient(ingredients.subList(fromIndex, toIndex));
-        OrderClient.createOrder(accessToken, order);
+        Response orderCreateAuthAndIngredient = OrderClient.createOrder(accessToken, order);
+        orderStep.orderSuccessCreateWithIngredients(orderCreateAuthAndIngredient);
     }
 
     @Test
-    @DisplayName("Getting a list of orders authorized user")
-    @Description("Getting a list of orders with authorization token")
-    public void getListOfOrdersAuthSuccess() {
-      Response userAuthGetList = OrderClient.getOrderUserToken(accessToken);
-      orderStep.checkGetOrdersListWithAuth(userAuthGetList);
-
+    @DisplayName("Create  order with authorization and without ingredients")
+    public void createOderWithAuthWithoutIngredient() {
+        OrderIngredient orderIngredient = new OrderIngredient();
+        Response orderCreateAuthNoIngredient = OrderClient.createOrder(accessToken, orderIngredient);
+        orderStep.orderCreateWithoutIngredients(orderCreateAuthNoIngredient);
     }
 
     @Test
-    @DisplayName("Getting a list of orders not  authorized user")
-    @Description("Getting a list of orders  without authorization token")
-    public void getListOfOrdersNonAuthUnauthorized() {
-        Response userNotAuthGetList = OrderClient.getOrderUserWithoutAuthorization();
-        orderStep.checkGetOrdersListNonAuth(userNotAuthGetList);
+    @DisplayName("Create order with authorization  with wrong hash ingredients")
+    public void createOderAuthWithWrongHashInternalServerError() {
+        OrderIngredient order = new OrderIngredient(List.of("545422zxcWroNG"));
+        Response orderCreateAuthWrongHash = OrderClient.createOrder(accessToken, order);
+        orderStep.orderCreateWithWrongIngredientHash(orderCreateAuthWrongHash);
     }
+
+
     @After
     public void deleteUser() {
         if (accessToken != null) {
             Response delete = UserClient.deleteUser(accessToken);
             delete.then().statusCode(202);
         }
+
+
     }
 }
