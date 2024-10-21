@@ -10,10 +10,7 @@ public class Credentials {
     }
     public Credentials() {
     }
-//
-//    public static Credentials fromUser(User user) {
-//        return new Credentials(user.getEmail(), user.getPassword());
-//    }
+
 public String getEmail() {
     return email;
 }
