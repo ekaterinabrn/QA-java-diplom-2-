@@ -7,6 +7,7 @@ import static Constant.EndpointConstant.CREATE_USER;
 import static Constant.EndpointConstant.DELETE_PATCH_USER;
 import static io.restassured.RestAssured.given;
 
+
 public class UserClient {
     @Step("Create user")
     public static Response createUser(User user) {
@@ -17,7 +18,7 @@ public class UserClient {
                 .post(CREATE_USER);
     }
     @Step("Delete user")
-    public static Response deleteUser(String accessToken){
+    public static Response deleteUser( String accessToken){
         return given().log().all()
                 .header("Authorization", accessToken)
                 .delete(DELETE_PATCH_USER);

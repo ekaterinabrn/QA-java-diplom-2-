@@ -32,9 +32,9 @@ public class ChangingUserDataTest {
     @Parameterized.Parameters(name = "{index} : update {3}")
     public static Object[][] testData() {
         return new Object[][]{
-                {RANDOM_EMAIL, RANDOM_PASSWORD, "new"},
-                {"new", RANDOM_PASSWORD, RANDOM_NAME},
-                {RANDOM_EMAIL, "new", RANDOM_NAME},
+                {RANDOM_EMAIL, RANDOM_PASSWORD, "newname"},
+                {"new@maii.test", RANDOM_PASSWORD, RANDOM_NAME},
+                {RANDOM_EMAIL, "newpass", RANDOM_NAME},
 
         };
     }
