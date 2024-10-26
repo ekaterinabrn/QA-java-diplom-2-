@@ -1,10 +1,13 @@
 package ClientStep;
+
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import model.User;
 
 import static Constant.EndpointConstant.CREATE_USER;
 import static Constant.EndpointConstant.DELETE_PATCH_USER;
+import static io.qameta.allure.model.Parameter.Mode.HIDDEN;
 import static io.restassured.RestAssured.given;
 
 
@@ -18,7 +21,7 @@ public class UserClient {
                 .post(CREATE_USER);
     }
     @Step("Delete user")
-    public static Response deleteUser( String accessToken){
+    public static Response deleteUser(@Param(mode = HIDDEN) String accessToken){
         return given().log().all()
                 .header("Authorization", accessToken)
                 .delete(DELETE_PATCH_USER);
