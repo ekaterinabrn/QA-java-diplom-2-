@@ -1,9 +1,9 @@
-package ClientStep;
+package clientstep;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
-import static Constant.EndpointConstant.INGREDIENT;
+import static constant.EndpointConstant.INGREDIENT;
 import static io.restassured.RestAssured.given;
 
 public class IngredientClient {

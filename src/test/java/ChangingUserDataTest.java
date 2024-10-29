@@ -1,5 +1,4 @@
-import ClientStep.UserClient;
-import Step.UserStep;
+import clientstep.UserClient;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
@@ -10,9 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import step.UserStep;
 
-import static Constant.EndpointConstant.URL;
-import static Constant.RandomDataUser.*;
+import static constant.EndpointConstant.URL;
+import static constant.RandomDataUser.*;
 
 @RunWith(Parameterized.class)
 public class ChangingUserDataTest {
@@ -52,9 +52,9 @@ public class ChangingUserDataTest {
     @DisplayName("Changing user data wit auth")
     @Description("Changing user data with auth and request return status code 200")
     public void updateLoginUser() {
-        User user6 = new User(email, password, name);
-        Response userTo = UserClient.updateDataUserAuth(user6, accessToken);
-        userStep.changingUserDataWithToken(userTo);
+        User newUser = new User(email, password, name);
+        Response userToChangeData = UserClient.updateDataUserAuth(newUser, accessToken);
+        userStep.changingUserDataWithToken(userToChangeData);
     }
 
 
@@ -62,8 +62,8 @@ public class ChangingUserDataTest {
     @DisplayName("Changing user data without auth")
     @Description("Changing user data without auth and request return status code 401")
     public void changeUserDataWithoutAuth() {
-        User user1 = new User(email, password, name);
-        Response changingNotAuthUser = UserClient.updateDataUserWithoutAuth(user1);
+        User userNoAuth = new User(email, password, name);
+        Response changingNotAuthUser = UserClient.updateDataUserWithoutAuth(userNoAuth);
         userStep.changingUserDataWithoutToken(changingNotAuthUser);
 
     }

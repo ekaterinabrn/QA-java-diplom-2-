@@ -1,4 +1,4 @@
-package Constant;
+package constant;
 
 public class EndpointConstant {
     public static final String URL ="https://stellarburgers.nomoreparties.site";

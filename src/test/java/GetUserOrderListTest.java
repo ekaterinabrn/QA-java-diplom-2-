@@ -1,8 +1,6 @@
-import ClientStep.IngredientClient;
-import ClientStep.OrderClient;
-import ClientStep.UserClient;
-import Step.OrderStep;
-import Step.UserStep;
+import clientstep.IngredientClient;
+import clientstep.OrderClient;
+import clientstep.UserClient;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
@@ -12,12 +10,14 @@ import model.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import step.OrderStep;
+import step.UserStep;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static Constant.EndpointConstant.URL;
-import static Constant.RandomDataUser.*;
+import static constant.EndpointConstant.URL;
+import static constant.RandomDataUser.*;
 
 public class GetUserOrderListTest {
     private String accessToken;

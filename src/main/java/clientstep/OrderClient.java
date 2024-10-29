@@ -1,10 +1,10 @@
-package ClientStep;
+package clientstep;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import model.OrderIngredient;
 
-import static Constant.EndpointConstant.CREATE_ORDER;
+import static constant.EndpointConstant.CREATE_ORDER;
 import static io.restassured.RestAssured.given;
 
 public class OrderClient {

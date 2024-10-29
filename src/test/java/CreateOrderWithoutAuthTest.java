@@ -1,17 +1,17 @@
-import ClientStep.IngredientClient;
-import ClientStep.OrderClient;
-import Step.OrderStep;
+import clientstep.IngredientClient;
+import clientstep.OrderClient;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import model.OrderIngredient;
 import org.junit.Before;
 import org.junit.Test;
+import step.OrderStep;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static Constant.EndpointConstant.URL;
+import static constant.EndpointConstant.URL;
 
 
 public class CreateOrderWithoutAuthTest {

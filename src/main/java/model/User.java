@@ -4,15 +4,18 @@ public class User {
     private String email;
     private String password;
     private String name;
+
     //конструктор с параметром
     public User(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
     }
+
     //конструктор без параметра
     public User() {
     }
+
     //сеттеры и геттеры
     public String getEmail() {
         return email;
@@ -37,4 +40,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
 }
